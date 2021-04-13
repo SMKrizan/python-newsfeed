@@ -1,4 +1,5 @@
 from flask import Flask
+# able to import 'home' directly from 'routes' because it is called and (re)named in its __init__.py
 from app.routes import home, dashboard
 
 # "def" keyword defines the "create_app()" function, which is identified with indentation (2 spaces)
