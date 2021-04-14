@@ -1,3 +1,4 @@
+# 
 from app.db import Base
 # we use classes from sqlalchemy module to define data columns and their data types
 from sqlalchemy import Column, Integer, String
@@ -6,6 +7,7 @@ from sqlalchemy.orm import validates
 # 
 import bcrypt
 salt = bcrypt.gensalt()
+
 
 # User class inherits from the Base class
 class User(Base):
@@ -29,5 +31,5 @@ class User(Base):
   def validate_password(self, key, password):
     assert len(password) > 4
 
-    # encrypts password
+    # returns encrypted version of password
     return bcrypt.hashpw(password.encode('utf-8'), salt)
