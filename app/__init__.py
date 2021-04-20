@@ -12,14 +12,15 @@ def create_app(test_config=None):
   app.url_map.strict_slashes = False
 # used when creating server-side sessions
   app.config.from_mapping(
+    # DO NOT FORGET TO UPDATE THIS FOR PRODUCTION
     SECRET_KEY='super_secret_key'
   )
+# registers blueprint
+  app.register_blueprint(api)
 # completes registration with Jinja template environment
   app.jinja_env.filters['format_url'] = filters.format_url
   app.jinja_env.filters['format_date'] = filters.format_date
   app.jinja_env.filters['format_plural'] = filters.format_plural
-# registers blueprint
-  app.register_blueprint(api)
 
 # creates a route to return a message-string
   @app.route('/hello')

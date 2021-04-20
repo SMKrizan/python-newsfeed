@@ -13,7 +13,7 @@ salt = bcrypt.gensalt()
 class User(Base):
   __tablename__ = 'users'
   id = Column(Integer, primary_key=True)
-#   'nullable=false' in SQL becomes 'NOT NULL'
+  # 'nullable=false' in SQL becomes 'NOT NULL'
   username = Column(String(50), nullable=False)
   email = Column(String(50), nullable=False, unique=True)
   password = Column(String(100), nullable=False)
@@ -33,3 +33,10 @@ class User(Base):
 
     # returns encrypted version of password
     return bcrypt.hashpw(password.encode('utf-8'), salt)
+
+  # uses 'checkpw()' method to compare incoming password ('password') to the one saved on User object ('self.password')
+  def verify_password(self, password):
+    return bcrypt.checkpw(
+      password.encode('utf-8'),
+      self.password.encode('utf-8')
+    )
