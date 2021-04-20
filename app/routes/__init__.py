@@ -2,3 +2,6 @@
 from .home import bp as home
 
 from .dashboard import bp as dashboard
+
+# use Flask to register blueprint
+from .api import bp as api
