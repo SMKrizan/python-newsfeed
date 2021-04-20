@@ -15,8 +15,7 @@ def create_app(test_config=None):
     # DO NOT FORGET TO UPDATE THIS FOR PRODUCTION
     SECRET_KEY='super_secret_key'
   )
-# registers blueprint
-  app.register_blueprint(api)
+
 # completes registration with Jinja template environment
   app.jinja_env.filters['format_url'] = filters.format_url
   app.jinja_env.filters['format_date'] = filters.format_date
@@ -28,6 +27,7 @@ def create_app(test_config=None):
       return "hello world"
 
   # register routes
+  app.register_blueprint(api)
   app.register_blueprint(home)
   app.register_blueprint(dashboard)
 
