@@ -3,6 +3,9 @@ from flask import Flask
 from app.routes import home, dashboard, api
 from app.db import init_db
 from app.utils import filters
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # "def" keyword defines the "create_app()" function, which is identified with indentation (2 spaces)
 def create_app(test_config=None):
@@ -13,7 +16,7 @@ def create_app(test_config=None):
 # used when creating server-side sessions
   app.config.from_mapping(
     # DO NOT FORGET TO UPDATE THIS FOR PRODUCTION
-    SECRET_KEY='super_secret_key'
+    SECRET_KEY=getenv('super_secret')
   )
 
 # completes registration with Jinja template environment
